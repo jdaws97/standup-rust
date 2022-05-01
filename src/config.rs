@@ -27,11 +27,10 @@ pub fn configure() -> Config {
             Ok(file) => toml::from_str(&file).unwrap(),
             Err(_) => config,
         };
-        new_config
-    } else {
-        config
-    }
- 
+        return new_config
+    };
+
+    config
 }
 
 
