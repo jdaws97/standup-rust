@@ -10,3 +10,5 @@ clap = { version = "3.1.12", features = ["derive"] }
 serde = { version = "1.0.27", features = ["derive"]}
 directories = "4.0.1"
 toml = "0.5.9"
+strum = "0.24.0"
+strum_macros = "0.24.0"

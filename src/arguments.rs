@@ -4,7 +4,9 @@ use clap:: {
     Subcommand
 };
 
-#[derive(Debug, Parser)]
+use strum_macros::Display;
+
+#[derive(Debug, Parser, Clone)]
 #[clap(author, version, about, long_about = None)]
 pub struct StandupArgs{
     #[clap(subcommand)]
@@ -12,7 +14,7 @@ pub struct StandupArgs{
 
 }
 
-#[derive(Debug, Subcommand)]
+#[derive(Debug, Subcommand, Clone)]
 pub enum Entities {
     /// Add a sentence to your notes
     Add(AddCommand),
@@ -25,7 +27,7 @@ pub enum Entities {
 
 }
 
-#[derive(Debug, Args)]
+#[derive(Debug, Args, Clone)]
 pub struct AddCommand {
     #[clap(subcommand)]
     /// Category for the note
@@ -36,29 +38,33 @@ pub struct AddCommand {
     
 }
 
-#[derive(Debug, Args)]
+#[derive(Debug, Args, Clone)]
 pub struct OpenCommand {
     /// Day paramter used for opening a certain days notes
     pub daysago: i32,
 }
 
-#[derive(Debug, Subcommand)]
+#[derive(Display, Debug, Subcommand, Clone)]
 pub enum Category {
     /// DONE category is for completed tasks
+    #[strum()]
     Done,
 
     /// IN-PROGRESS is for tasks in the works
+    #[strum()]
     InProgress,
 
     /// BLOCKER is a task which can't move forward
+    #[strum()]
     Blocker,
 
     /// NOTES are general notes for the day
+    #[strum()]
     Notes,
 
 }
 
-#[derive(Debug, Args)]
+#[derive(Debug, Args, Clone)]
 pub struct ConfigCommand {
 
     #[clap(subcommand)]
@@ -66,9 +72,10 @@ pub struct ConfigCommand {
 
 }
 
-#[derive(Debug, Subcommand)]
+#[derive(Display, Debug, Subcommand, Clone)]
 pub enum ConfigCommandList {
     /// Open the config file
+    #[strum()]
     Open,
 
     /// Config days
@@ -78,7 +85,7 @@ pub enum ConfigCommandList {
     Path(PathCommand),
 }
 
-#[derive(Debug, Args)]
+#[derive(Debug, Args, Clone)]
 pub struct DaysCommand {
     /// Adjust how many days to keep notes
     #[clap(default_value_t = 7)]
@@ -86,7 +93,7 @@ pub struct DaysCommand {
 
 }
 
-#[derive(Debug, Args)]
+#[derive(Debug, Args, Clone)]
 pub struct PathCommand {
     /// Give the new path
     pub path: String,
