@@ -24,8 +24,4 @@ impl Standup {
         };
         return false
     }
-
-
-
-
 }

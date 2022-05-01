@@ -6,7 +6,6 @@ use arguments::StandupArgs;
 use clap::Parser;
 use config::configure;
 use arguments::ConfigCommandList;
-use arguments::ConfigCommand;
 use standup::Standup;
 use arguments::Entities;
 
@@ -16,7 +15,7 @@ fn main() {
     let mut category: String = String::new();
     let mut days_ago: i32;
     let mut config_days: i32 = 0;
-    let mut config_bool = false;
+  
     match &args.entity {
         Entities::Add (add_command) => {
             category = add_command.category.to_string();
