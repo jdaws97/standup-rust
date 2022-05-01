@@ -1,6 +1,5 @@
 use std::fs;
 
-
 use directories::ProjectDirs;
 use serde::Deserialize;
 
