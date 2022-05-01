@@ -1,8 +1,8 @@
-mod config;
 
+use crate::config::Config;
 
-use std::fs;
-use config::Config;
+use std::env::set_current_dir;
+use std::path::Path;
 
 pub struct Standup {
     pub category: String,
@@ -12,13 +12,20 @@ pub struct Standup {
 }
 
 impl Standup {
-    pub fn check_path(path: &str) {
+    pub fn check_path(&mut self, path: &str) -> bool {
         let path_bool: bool = path.is_empty();
         if !path_bool {
-            let paths = fs::read_dir(path);
-            for item in paths {
-                println!("{}", item);
-            }
-        }
+            if Path::new(path).exists() {
+                match set_current_dir(Path::new(path)) {
+                    Ok(_) => return true,
+                    Err(_) => return false,
+                };
+            };
+        };
+        return false
     }
+
+
+
+
 }
