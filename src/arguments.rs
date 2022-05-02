@@ -89,7 +89,7 @@ pub enum ConfigCommandList {
 pub struct DaysCommand {
     /// Adjust how many days to keep notes
     #[clap(default_value_t = 7)]
-    pub days: u32,
+    pub days: i32,
 
 }
 
