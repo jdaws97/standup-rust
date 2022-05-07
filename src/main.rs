@@ -52,8 +52,11 @@ fn main() {
             println!("{:?}", config_list);
         },
     }
-    
-    let mut standup = Standup { category: category, sentence: sentence, days_ago: days_ago, config: config };
+    let const_sentence = sentence.clone();
+    let const_category = category.clone();
+    let const_days_ago = days_ago.clone();
+
+    let mut standup = Standup { category: const_category, sentence: const_sentence, days_ago: const_days_ago, config: config };
     
     let standup_dir = Standup::check_path(&mut standup, Path::new(&path));
 
@@ -70,6 +73,11 @@ fn main() {
                     .status()
                     .expect("Command failed");
     }
-    Standup::check_standup();
+    Standup::check_standup(&mut standup);
     println!("{:?}", standup_dir);
+
+    // let sentence_bool = sentence.clone().is_empty();
+    let category_bool = category.clone().is_empty();
+    
+
 }

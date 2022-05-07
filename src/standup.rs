@@ -55,9 +55,19 @@ impl Standup {
         }
     }
 
-    pub fn check_standup() {
+    pub fn check_standup(&mut self) {
         let date_time = Local::now();
         let current_date = date_time.month().to_string() + "-" + &date_time.day().to_string() + "-" + &date_time.year().to_string();
         println!("{:?}", current_date);
+        let config: Config = self.config.clone();
+        self.check_path(Path::new(&config.path));
+
     }
+
+
+    pub fn create_standup(&mut self) {
+        
+
+    }
+
 }
